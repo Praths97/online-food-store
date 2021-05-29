@@ -13,6 +13,7 @@ public class Order {
     private String addressId;
     private PaymentDetails paymentDetails;
     private AddressDetails addressDetails;
+    private DeliveryExecutiveDetails deliveryExecutiveDetails;
 
     public String getId() {
         return id;
@@ -92,5 +93,13 @@ public class Order {
 
     public void setAddressDetails(AddressDetails addressDetails) {
         this.addressDetails = addressDetails;
+    }
+
+    public DeliveryExecutiveDetails getDeliveryExecutiveDetails() {
+        return deliveryExecutiveDetails;
+    }
+
+    public void setDeliveryExecutiveDetails(DeliveryExecutiveDetails deliveryExecutiveDetails) {
+        this.deliveryExecutiveDetails = deliveryExecutiveDetails;
     }
 }

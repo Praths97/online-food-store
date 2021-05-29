@@ -2,11 +2,13 @@ package com.foodstore.model;
 
 public class AddressDetails {
     private String id;
+    private String customerName;
+    private String customerNumber;
     private String houseNumber;
     private String street;
     private String city;
     private String area;
-    private String pincode;
+    private int pincode;
 
     public String getId() {
         return id;
@@ -16,6 +18,21 @@ public class AddressDetails {
         this.id = id;
     }
 
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public String getCustomerNumber() {
+        return customerNumber;
+    }
+
+    public void setCustomerNumber(String customerNumber) {
+        this.customerNumber = customerNumber;
+    }
 
     public String getHouseNumber() {
         return houseNumber;
@@ -49,11 +66,11 @@ public class AddressDetails {
         this.area = area;
     }
 
-    public String getPincode() {
+    public int getPincode() {
         return pincode;
     }
 
-    public void setPincode(String pincode) {
+    public void setPincode(int pincode) {
         this.pincode = pincode;
     }
 }

@@ -1,9 +1,9 @@
 package com.foodstore.model;
 
-public class DeliveryExecutive {
-   private String id;
-   private String name;
-   private String phoneNumber;
+public class DeliveryExecutiveDetails {
+    private String id;
+    private String name;
+    private String phoneNumber;
 
     public String getId() {
         return id;
