@@ -1,9 +1,6 @@
 package com.foodstore;
 
-import com.foodstore.model.AddressDetails;
-import com.foodstore.model.MenuItem;
-import com.foodstore.model.Order;
-import com.foodstore.model.PaymentDetails;
+import com.foodstore.model.*;
 import com.foodstore.services.menuitems.MenuItemService;
 import com.foodstore.services.menuitems.MenuItemServiceImplementation;
 import com.foodstore.services.orders.OrderService;
@@ -16,7 +13,6 @@ public class EntryPoint {
     public static String menu = "MENU";
     public static String ORDER = "ORDER";
     public static String LIST_ORDERS = "LIST_ORDERS";
-    //public static String type;
     static OrderService orderService = null;
     static MenuItemService menuItemService = null;
 
@@ -31,7 +27,7 @@ public class EntryPoint {
         String next = scanner.next();
 
         if (menu.equalsIgnoreCase(next)) {
-            System.out.println("======= FOOD MENU ======");
+            System.out.println("======= FOOD MENU START ======");
             // write code to list the menu items
             List<MenuItem> items = menuItemService.listMenu();
             System.out.print(" Id       ");
@@ -43,7 +39,8 @@ public class EntryPoint {
                 System.out.print("    " + m.getName());
                 System.out.println("      " + m.getPrice());
             }
-            System.out.println();
+            System.out.println("======= FOOD MENU END ======");
+            //System.out.println();
             printOptions();
         } else if (ORDER.equalsIgnoreCase(next)) {
             Order order = new Order();
@@ -108,32 +105,42 @@ public class EntryPoint {
                 System.out.println("Delivery Executive details: ");
                 System.out.println("        -> Name = " + order.getDeliveryExecutiveDetails().getName());
                 System.out.println("        > PhoneNumber = " + order.getDeliveryExecutiveDetails().getPhoneNumber());
-                System.out.println(" ========== SEE YOU SOON ============");
+                System.out.println("============== FEEDBACK============");
+                Feedback feedback = new Feedback();
+                feedback.setCustomerName(addressDetails.getCustomerName());
+                System.out.println("Please give your valuable feedback here : ");
+                String message = scanner.next();
+                feedback.setMessage(message);
+                feedback.setOrderId(updatedOrder.getId());
+                order.setFeedback(feedback);
+                orderService.giveFeedback(feedback);
+                System.out.println(" ===THANKS FOR YOUR FEEDBACK * SEE YOU SOON ===");
             }
             printOptions();
-
         } else if (LIST_ORDERS.equalsIgnoreCase(next)) {
             System.out.println("======= ORDERS LIST START ======");
             // write code to list the orders list
             List<Order> orders = orderService.listOrders();
-            if(orders.size() >0) {
-                System.out.print(" Id   ");
-                System.out.print("item name");
-                System.out.print("Quantity");
-                System.out.print("Price");
-                System.out.print("Delivered By");
+            if (orders.size() > 0) {
+                System.out.print("Id");
+                System.out.print("  item name");
+                System.out.print("  Quantity");
+                System.out.print("  Price");
+                System.out.print(" Delivered By");
                 System.out.println("");
                 for (int i = 0; i < orders.size(); i++) {
                     Order order = orders.get(i);
-                    System.out.print("  " + order.getId());
+                    System.out.print(order.getId());
                     System.out.print("    " + order.getItemId());
-                    System.out.print("      " + order.getQuantity());
-                    System.out.print("      " + order.getPrice());
-                    System.out.print("      " + order.getDeliveryExecutiveDetails().getName());
+                    System.out.print("    " + order.getQuantity());
+                    System.out.print("    " + order.getPrice());
+                    System.out.print("    " + order.getDeliveryExecutiveDetails().getName());
+                    System.out.println();
                 }
-            }else{
+            } else {
                 System.out.println("No orders");
             }
+            System.out.println();
             System.out.println("======= ORDERS LIST END ======");
             System.out.println();
             printOptions();
@@ -148,9 +155,11 @@ public class EntryPoint {
     static void printOptions() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("");
+        System.out.println("==============OPTIONS START===============");
         System.out.println("Type MENU to see the menu items");
         System.out.println("Type ORDER to place order");
         System.out.println("Type LIST_ORDERS to see all orders");
+        System.out.println("===============OPTIONS END===============");
         readInput(scanner);
     }
 }

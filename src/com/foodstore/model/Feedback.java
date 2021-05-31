@@ -7,6 +7,16 @@ public class Feedback {
     private String customerName;
     private String message;
     private Date date;
+    private String orderId;
+
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
 
     public String getId() {
         return id;

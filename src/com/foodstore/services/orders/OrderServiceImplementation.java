@@ -2,11 +2,10 @@ package com.foodstore.services.orders;
 
 import com.foodstore.dbhelper.DBConnection;
 import com.foodstore.dbhelper.DBConnectionImplementation;
-import com.foodstore.model.DeliveryExecutiveDetails;
-import com.foodstore.model.MenuItem;
-import com.foodstore.model.Order;
+import com.foodstore.model.*;
 import com.foodstore.services.menuitems.MenuItemService;
 import com.foodstore.services.menuitems.MenuItemServiceImplementation;
+import com.foodstore.model.Order;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -71,7 +70,7 @@ public class OrderServiceImplementation implements OrderService {
                 MenuItem menuItem = new MenuItemServiceImplementation().getMenu(order.getItemId());
                 order.setItemId(menuItem.getName());
 
-                DeliveryExecutiveDetails deliveryExecutiveDetails= getDeliveryExecutiveDetails(order.getDeliveryExecutiveId());
+                DeliveryExecutiveDetails deliveryExecutiveDetails = getDeliveryExecutiveDetails(order.getDeliveryExecutiveId());
                 order.setDeliveryExecutiveDetails(deliveryExecutiveDetails);
                 orders.add(order);
             }
@@ -86,6 +85,28 @@ public class OrderServiceImplementation implements OrderService {
 
     @Override
     public Order getOrderDetails(String orderId) {
+        return null;
+    }
+
+    @Override
+    public String giveFeedback(Feedback feedback) {
+        DBConnectionImplementation db = new DBConnectionImplementation();
+        Connection con = db.getConnection();
+        Random random = new Random();
+        try {
+            Statement stmt = con.createStatement();
+
+            String feedbackId = String.valueOf(random.nextInt(500000));
+            // feedback.setFeedbackId(feedbackId);
+            stmt.executeUpdate("INSERT INTO feedback " + "VALUES('" + feedbackId + "','" + feedback.getCustomerName() + "','" + feedback.getMessage() + "','" + feedback.getOrderId() + "')");
+            return feedbackId;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
         return null;
     }
 

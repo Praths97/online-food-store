@@ -12,9 +12,11 @@ public class Order {
     private Date deliveredAt; // ignore this for now while feeding data to DB
     private String paymentId;
     private String addressId;
+    private String feedbackId;
     private PaymentDetails paymentDetails;
     private AddressDetails addressDetails;
     private DeliveryExecutiveDetails deliveryExecutiveDetails;
+    private Feedback feedback;
 
     public float getPrice() {
         return price;
@@ -108,7 +110,24 @@ public class Order {
         return deliveryExecutiveDetails;
     }
 
+    public Feedback getFeedback() {
+        return feedback;
+    }
+
+    public void setFeedback(Feedback feedback) {
+        this.feedback = feedback;
+
+    }
+
     public void setDeliveryExecutiveDetails(DeliveryExecutiveDetails deliveryExecutiveDetails) {
         this.deliveryExecutiveDetails = deliveryExecutiveDetails;
+    }
+
+    public String getFeedbackId() {
+        return feedbackId;
+    }
+
+    public void setFeedbackId(String feedbackId) {
+        this.feedbackId = feedbackId;
     }
 }

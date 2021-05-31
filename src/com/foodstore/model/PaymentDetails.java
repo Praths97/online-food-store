@@ -36,11 +36,10 @@ public class PaymentDetails {
     }
 
     public void setType(String type) {
-        try{
+        try {
             PaymentType payment = Enum.valueOf(PaymentType.class, type);
             this.type = payment;
-        }
-        catch (Exception e){
+        } catch (Exception e) {
 
         }
 

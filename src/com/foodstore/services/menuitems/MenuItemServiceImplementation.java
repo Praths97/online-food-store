@@ -19,7 +19,7 @@ public class MenuItemServiceImplementation implements MenuItemService {
         DBConnection db = new DBConnectionImplementation();
         Connection con = db.getConnection();
         Statement stmt = null;
-        List<MenuItem> menuItemList= new ArrayList<MenuItem>();
+        List<MenuItem> menuItemList = new ArrayList<MenuItem>();
         try {
             stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select * from menuitem");
