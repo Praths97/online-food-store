@@ -8,6 +8,7 @@ public class AddressDetails {
     private String street;
     private String city;
     private String area;
+    private String state;
     private int pincode;
 
     public String getId() {
@@ -72,5 +73,13 @@ public class AddressDetails {
 
     public void setPincode(int pincode) {
         this.pincode = pincode;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }

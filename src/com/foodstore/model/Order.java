@@ -6,6 +6,7 @@ public class Order {
     private String id;
     private String itemId;
     private int quantity;
+    private float price;
     private Date orderedAt;
     private String deliveryExecutiveId;
     private Date deliveredAt; // ignore this for now while feeding data to DB
@@ -14,6 +15,14 @@ public class Order {
     private PaymentDetails paymentDetails;
     private AddressDetails addressDetails;
     private DeliveryExecutiveDetails deliveryExecutiveDetails;
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
 
     public String getId() {
         return id;

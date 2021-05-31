@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface OrderService {
 
-    public String placeOrder(Order order);     // returns orderId
+    public Order placeOrder(Order order);     // returns orderId
 
     public List<Order> listOrders();  // returns all existing orders
 

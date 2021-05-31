@@ -8,6 +8,13 @@ public class PaymentDetails {
     private String cardNumber;
     private String cardHolderName;
 
+    enum PaymentType {
+        CASH,
+        CARD,
+        UPI,
+        INTERNET_BANKING
+    }
+
     public String getId() {
         return id;
     }
@@ -28,11 +35,19 @@ public class PaymentDetails {
         return type;
     }
 
-    public void setType(PaymentType type) {
-        this.type = type;
+    public void setType(String type) {
+        try{
+            PaymentType payment = Enum.valueOf(PaymentType.class, type);
+            this.type = payment;
+        }
+        catch (Exception e){
+
+        }
+
     }
 
     public String getCardNumber() {
+
         return cardNumber;
     }
 
@@ -49,9 +64,3 @@ public class PaymentDetails {
     }
 }
 
-enum PaymentType {
-    CASH,
-    CARD,
-    UPI,
-    INTERNET_BANKING
-}
